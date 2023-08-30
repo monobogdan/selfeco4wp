@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="VK4WP.DialogPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VK4WP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FF0B6AF3">
+            <StackPanel.Resources>
+
+                <Storyboard x:Name="fadeIn">
+                    <DoubleAnimation
+                    Storyboard.TargetName="name"
+                    Storyboard.TargetProperty="Opacity"
+                    From="0.0"
+                    To="1.0"
+                    Duration="0:0:1" />
+                </Storyboard>
+            </StackPanel.Resources>
+
+            <TextBlock x:Name="name" TextWrapping="Wrap" Text="Имя Фамилия" Margin="25,15,5,15" FontSize="24"/>
+        </StackPanel>
+
+        <ScrollViewer x:Name="scroller" Grid.Row="1" ViewChanged="OnScrollerChanged">
+            <StackPanel x:Name="contentMain" Orientation="Vertical">
+                
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" x:Name="message" Margin="10" AcceptsReturn="True" PlaceholderText="Сообщение" />
+            <Button Grid.Column="1" Content=">" x:Name="buttonSend" Click="OnSendMessage" />
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,56 @@
+﻿<Page
+    x:Class="VK4WP.MusicPage"
+    xmlns:UI="using:VK4WP.UI"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VK4WP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <UI:Header Grid.Row="0" x:Name="header" />
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox VerticalAlignment="Center" Grid.Column="0" x:Name="query" Margin="5" TextChanged="OnQueryChanged"></TextBox>
+            <Button Grid.Column="1" Content="Искать" Margin="5" Click="OnSearch"></Button>
+        </Grid>
+
+        <ScrollViewer Grid.Row="2">
+            <StackPanel Name="contentMain" Orientation="Vertical">
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <UI:NavigationDrawer x:Name="drawer" Grid.Row="2" VerticalAlignment="Stretch" />
+
+        <StackPanel Grid.Row="3" Orientation="Vertical" x:Name="playerControls">
+            <TextBlock x:Name="mediaName" Text="Ничего не играет" Margin="15,0" FontSize="22" />
+            <Slider x:Name="mediaSlider" Margin="15,5" Value="5" ValueChanged="OnValueChanged" />
+            <TextBlock TextAlignment="Right" x:Name="mediaTime" Text="00:00" Margin="15,0" FontSize="16" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" HorizontalAlignment="Center" Content="&lt;" Margin="5,0" />
+                <Button x:Name="mediaPlay" Grid.Column="1" HorizontalAlignment="Center" Content="Play" Margin="5,0" Click="OnPlayPause" />
+                <Button Grid.Column="2" HorizontalAlignment="Center" Content="&gt;" Margin="5,0" />
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</Page>

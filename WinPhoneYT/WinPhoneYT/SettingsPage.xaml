@@ -1,0 +1,53 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="WinPhoneYT.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True" Loaded="OnLoad" Unloaded="OnExited">
+
+    <!--LayoutRoot представляет корневую сетку, где размещается все содержимое страницы-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel содержит имя приложения и заголовок страницы-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="SETTINGS" Style="{StaticResource PhoneTextNormalStyle}"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1">
+            <!--ContentPanel – поместите здесь дополнительное содержимое-->
+            <StackPanel x:Name="ContentPanel" Orientation="Vertical" Margin="15">
+                <CheckBox x:Name="cbHistory" Content="Save history" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Click="OnCheckHistory"/>
+                <CheckBox x:Name="cbPreview" Content="Load previews" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Click="OnCheckPreview"/>
+                <TextBlock x:Name="textBlock" TextWrapping="Wrap" FontSize="22" Margin="12,0,0,0" Text="Desired quality:"/>
+                <StackPanel  Margin="15" Height="436">
+                    <RadioButton x:Name="radioRes0" Content="Auto (device resolution)" Checked="OnPickResolution"/>
+                    <RadioButton x:Name="radioRes1" Content="240p" Checked="OnPickResolution"/>
+                    <RadioButton x:Name="radioRes2" Content="360p" Checked="OnPickResolution"/>
+                    <RadioButton x:Name="radioRes3" Content="480p" Checked="OnPickResolution"/>
+                    <RadioButton x:Name="radioRes4" Content="720p" Checked="OnPickResolution"/>
+                    <RadioButton x:Name="radioRes5" Content="1080p" Checked="OnPickResolution"/>
+                </StackPanel>
+
+                <TextBlock x:Name="copy0" TextWrapping="Wrap" FontSize="22" Margin="12,0,0,0" Text="Сделано руками :)"/>
+                <TextBlock x:Name="copy1" TextWrapping="Wrap" FontSize="22" Margin="12,0,0,0" Text="©2023 Bogdan Nikolaev. All rights reserved."/>
+                <TextBlock x:Name="copy2" TextWrapping="Wrap" FontSize="22" Margin="12,0,0,0" Text="Powered by Invidous API."/>
+            </StackPanel>
+
+        
+        </ScrollViewer>
+        
+    </Grid>
+
+</phone:PhoneApplicationPage>
