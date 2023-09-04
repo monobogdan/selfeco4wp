@@ -94,11 +94,14 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\AppSettings.cs" />
+    <Compile Include="Data\FavoriteManager.cs" />
     <Compile Include="Data\HistoryManager.cs" />
     <Compile Include="Data\JSON.cs" />
+    <Compile Include="Data\MediaUtils.cs" />
     <Compile Include="Data\YTAPI.cs" />
     <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="UI\AnimGeneartor.cs" />
+    <Compile Include="UI\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,8 +110,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsPage.xaml.cs">
+    <Compile Include="UI\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\VideoCardPage.xaml.cs">
+      <DependentUpon>VideoCardPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\VideoControl.xaml.cs">
       <DependentUpon>VideoControl.xaml</DependentUpon>
@@ -119,11 +125,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="UI\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsPage.xaml">
+    <Page Include="UI\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\VideoCardPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,10 +153,12 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\like.png" />
     <Content Include="Assets\history.png" />
     <Content Include="Assets\config.png" />
     <Content Include="Assets\find.png" />
     <Content Include="Assets\popular.png" />
+    <Content Include="Assets\views.png" />
     <Content Include="Assets\trend.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

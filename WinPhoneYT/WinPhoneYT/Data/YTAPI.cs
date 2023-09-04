@@ -15,6 +15,8 @@ namespace WinPhoneYT
 
     public sealed class YTAPI
     {
+        public static YTAPI Instance;
+
         public static string[] InvidousInstances = {
             "https://google.com/"
                                                  };
@@ -22,6 +24,11 @@ namespace WinPhoneYT
         string line = "";
 
         public bool HasPendingOperation;
+
+        static YTAPI()
+        {
+            Instance = new YTAPI();
+        }
 
         public YTAPI()
         {
@@ -70,6 +77,17 @@ namespace WinPhoneYT
             return pick;
         }
 
+        public AdaptiveFormat PickBestAudio(VideoDescriptor desc)
+        {
+            foreach(AdaptiveFormat fmt in desc.adaptiveFormats)
+            {
+                if (fmt.container == "m4a" && fmt.audioQuality.Contains("MEDIUM"))
+                    return fmt;
+            }
+
+            return null;
+        }
+
         public void QueryTrendingList(Action<List<VideoInfo>> onReady)
         {
             HasPendingOperation = true;
@@ -113,6 +131,18 @@ namespace WinPhoneYT
             RequestURL("search", (string json) =>
             {
                 List<VideoInfo> ret = JsonConvert.DeserializeObject<List<VideoInfo>>(json);
+
+                onReady(ret);
+                HasPendingOperation = false;
+            }, "&q={0}&type=video", query);
+        }
+
+        public void QueryCommentList(string query, VideoDescriptor desc, Action<CommentList> onReady)
+        {
+            HasPendingOperation = true;
+            RequestURL("comments/" + desc.videoId, (string json) =>
+            {
+                CommentList ret = JsonConvert.DeserializeObject<CommentList>(json);
 
                 onReady(ret);
                 HasPendingOperation = false;

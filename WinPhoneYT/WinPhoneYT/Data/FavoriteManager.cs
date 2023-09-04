@@ -9,28 +9,44 @@ using Newtonsoft.Json;
 
 namespace WinPhoneYT
 {
-    public sealed class HistoryManager
+    public sealed class FavoriteManager
     {
-        const string FileName = "history.json";
-
-        public List<VideoInfo> CachedHistory;
-        public List<VideoDescriptor> WatchLater;
+        const string FileName = "favorites.json";
+        
+        public List<VideoInfo> WatchLaterList;
         private bool readyState;
 
-        public HistoryManager()
+        public FavoriteManager()
         {
-            CachedHistory = new List<VideoInfo>();
+            WatchLaterList = new List<VideoInfo>();
         }
 
         public void Clear()
         {
-            CachedHistory.Clear();
+            WatchLaterList.Clear();
         }
 
-        public void AddHistoryEntry(VideoInfo info)
+        public void AddEntry(VideoInfo desc)
         {
-            if(info != null)
-                CachedHistory.Add(info);
+            if(desc != null)
+                WatchLaterList.Add(desc);
+        }
+    
+        public void RemoveEntry(VideoInfo info)
+        {
+            if (info != null)
+            {
+                VideoInfo target = null;
+
+                foreach(VideoInfo i in WatchLaterList)
+                {
+                    if (i.videoId == info.videoId)
+                        target = i;
+                }
+
+                if (target != null)
+                    WatchLaterList.Remove(target);
+            }
         }
 
         public bool IsReady()
@@ -55,7 +71,7 @@ namespace WinPhoneYT
                         str += reader.ReadLine();
 
                     reader.Close();
-                    CachedHistory = JsonConvert.DeserializeObject<List<VideoInfo>>(str);
+                    WatchLaterList = JsonConvert.DeserializeObject<List<VideoInfo>>(str);
 
                     readyState = true;
                 }
@@ -65,21 +81,9 @@ namespace WinPhoneYT
         public void Save()
         {
             var storage = System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication();
-
-            int historyLimit = 30;
-            List<VideoInfo> shrinkedList = new List<VideoInfo>(historyLimit);
             
-            foreach(VideoInfo info in CachedHistory)
-            {
-                if (historyLimit == 0)
-                    break;
-
-                shrinkedList.Add(info);
-                historyLimit--;
-            }
-
             StreamWriter writer = new StreamWriter(storage.CreateFile(FileName));
-            writer.Write(JsonConvert.SerializeObject(shrinkedList));
+            writer.Write(JsonConvert.SerializeObject(WatchLaterList));
             writer.Close();
         }
     }

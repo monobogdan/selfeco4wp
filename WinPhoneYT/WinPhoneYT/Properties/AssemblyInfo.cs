@@ -35,3 +35,8 @@ using System.Resources;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
+
+public static class AppVersion
+{
+    public static System.Version CurrentVersion = new System.Version(1, 1);
+}

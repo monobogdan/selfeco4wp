@@ -12,10 +12,10 @@ namespace WinPhoneYT
 {
     public partial class App : Application
     {
-        /// <summary>
-        /// Provides easy access to the root frame of the Phone Application.
-        /// </summary>
-        /// <returns>The root frame of the Phone Application.</returns>
+        public FavoriteManager Favorites;
+
+        public new static App Current;
+
         public static PhoneApplicationFrame RootFrame { get; private set; }
 
         /// <summary>
@@ -25,6 +25,11 @@ namespace WinPhoneYT
         {
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
+
+            Current = this;
+
+            Favorites = new FavoriteManager();
+            Favorites.Load();
             
             // Standard XAML initialization
             InitializeComponent();

@@ -1,0 +1,84 @@
+﻿<phone:PhoneApplicationPage xmlns:UI="clr-namespace:WinPhoneYT.UI" 
+    x:Class="WinPhoneYT.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+    <StackPanel HorizontalAlignment="Left" Height="768" VerticalAlignment="Top" Width="480">
+
+        <StackPanel Height="50">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFF2121" Offset="0"/>
+                    <GradientStop Color="#FFE81414" Offset="1"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <TextBlock Text="YouTube4WP" Height="32" FontSize="24" FontFamily="Portable User Interface" Margin="25,10,0,0" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <ProgressBar x:Name="progressBar" Opacity="0.0" Height="35" Value="25" IsIndeterminate="True" RenderTransformOrigin="0.5,0.5" FontFamily="Portable User Interface">
+            <ProgressBar.Resources>
+                <Storyboard x:Name="progressFadeIn">
+                    <DoubleAnimation
+                        Storyboard.TargetName="progressBar"
+                        Storyboard.TargetProperty="Opacity"
+                        From="0.0" To="1.0"
+                        Duration="0:0:1" />
+                </Storyboard>
+                <Storyboard x:Name="progressFadeOut">
+                    <DoubleAnimation
+                        Storyboard.TargetName="progressBar"
+                        Storyboard.TargetProperty="Opacity"
+                        From="1.0" To="0.0"
+                        Duration="0:0:1" />
+                </Storyboard>
+            </ProgressBar.Resources>
+        </ProgressBar>
+        <StackPanel Orientation="Horizontal" Height="74">
+            <TextBox Name="searchTextBox" Height="72" TextWrapping="Wrap" Text="" Margin="0,1" Width="414"/>
+            <Button Width="72" Click="OnRequestSearch">
+                <Image Source="Assets/find.png" />
+            </Button>
+        </StackPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Click="OnReloadTrends" FontSize="16">
+                <Image Source="/Assets/trend.png" />
+            </Button>
+            <Button Grid.Column="1" FontSize="16" Click="OnReloadPopular">
+                <Image Source="/Assets/popular.png" />
+            </Button>
+            <Button Grid.Column="2" FontSize="16" Click="OnReloadHistory">
+                <Image Source="/Assets/history.png" />
+            </Button>
+            <Button Grid.Column="3" FontSize="16" Click="OpenFavs">
+                <Image Source="/Assets/like.png" />
+            </Button>
+            <Button Grid.Column="4" FontSize="16" Click="OpenSettings">
+                <Image Source="/Assets/config.png" />
+            </Button>
+        </Grid>
+        <ScrollViewer HorizontalAlignment="Stretch" Height="537"  >
+            <StackPanel x:Name="contentMain" HorizontalAlignment="Stretch"/>
+        </ScrollViewer>
+
+    </StackPanel>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+
+</phone:PhoneApplicationPage>

@@ -91,6 +91,33 @@ namespace WinPhoneYT
         public int viewCount { get; set; }
     }
 
+    public class Comment
+    {
+        public bool verified { get; set; }
+        public string author { get; set; }
+        public List<AuthorThumbnail> authorThumbnails { get; set; }
+        public string authorId { get; set; }
+        public string authorUrl { get; set; }
+        public bool isEdited { get; set; }
+        public string content { get; set; }
+        public string contentHtml { get; set; }
+        public bool isPinned { get; set; }
+        public bool isSponsor { get; set; }
+        public int published { get; set; }
+        public string publishedText { get; set; }
+        public int likeCount { get; set; }
+        public string commentId { get; set; }
+        public bool authorIsChannelOwner { get; set; }
+    }
+
+    public class CommentList
+    {
+        public int commentCount { get; set; }
+        public string videoId { get; set; }
+        public List<Comment> comments { get; set; }
+        public string continuation { get; set; }
+    }
+
     public class VideoDescriptor
     {
         public string type { get; set; }
